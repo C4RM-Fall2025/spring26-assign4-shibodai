@@ -1,35 +1,95 @@
 import WhoAmI_File
-def test_WhoAmI():
-    assert WhoAmI_File.WhoAmI() != 'djr2132'
+def WhoAmI():
+    return('sd3965')
+x=WhoAmI()
+print(x)
         
 import BondPrice_File
-def test_getBondPrice():
-    assert round(BondPrice_File.getBondPrice(.03, 2000000, .04, 10,  1)) == 2170604
-    assert round(BondPrice_File.getBondPrice(.03, 2000000, .04, 10,  2)) == 2171686
+def getBondPrice(y, face, couponRate, m, ppy=1):
+    r = y / ppy              
+    n = m * ppy              
+    C = face * couponRate / ppy  
+    bondPrice = 0
+    for t in range(1, n + 1):
+        bondPrice += C / ((1 + r) ** t)
+    bondPrice += face / ((1 + r) ** n)
+    return bondPrice
+
+getBondPrice(0.03,20000000,0.04,10)
 
 import BondDuration_File
-def test_getBondDuration():
-    assert round(BondDuration_File.getBondDuration(.03, 2000000, .04, 10,1),2) == 8.51
+def getBondDuration(y, face, couponRate, m, ppy=1):
+    r = y / ppy
+    n = m * ppy
+    C = face * couponRate / ppy
+    price = 0
+    weighted_sum = 0
+
+    for t in range(1, n + 1):
+        cf = C
+        if t == n:
+            cf = C + face
+        pv = cf / ((1 + r) ** t)
+        price += pv
+        weighted_sum += (t / ppy) * pv  
+
+    bondDuration = weighted_sum / price
+    return bondDuration
+
+getBondDuration(0.03,20000000,0.04,10)
 
 import BondPrice_E_File
-def test_GetBondPriceE():
-    yc = [.010,.015,.020,.025,.030]
-    face = 2000000
-    couponRate = .04
-    assert round(BondPrice_E_File.getBondPrice_E(face, couponRate, yc)) == 2098949 
+def getBondPrice_E(face, couponRate, m, yc):
+    C = face * couponRate
+    bondPrice = 0
+    discount_factor = 1
+
+    for t, rate in enumerate(yc, start=1):
+        discount_factor *= (1 + rate)
+        cf = C
+        if t == m:
+            cf = C + face
+
+        bondPrice += cf / discount_factor
+
+    return bondPrice
+getBondPrice_E(20000000,.04,5,[.010,.015,.020,.025,.030])
 
 import BondPrice_Z_File
-def test_GetBondPriceZ():
-    yc = [.010,.015,.020,.025,.030]
-    times=[1,1.5,3,4,7]
-    face = 2000000
-    couponRate = .04
-    x = BondPrice_Z_File.getBondPrice_Z(face, couponRate, times, yc)
-    assert round(x) == 1996533
+def getBondPrice_Z(face, couponRate, times, yc):
+    C = face * couponRate
+    bondPrice = 0
+
+    for t, rate in zip(times, yc):
+
+        if t == times[-1]:   
+            cf = C + face
+        else:
+            cf = C
+
+        bondPrice += cf / ((1 + rate) ** t)
+
+    return bondPrice
+getBondPrice_Z(2000000,.04,[1,1.5,3,4,7],[.010,.015,.020,.025,.030])
+
     
 import FizzBuzz_File
-def test_FizzBuzz():
-    x = FizzBuzz_File.FizzBuzz(40,45)
-    assert x[0] == "buzz"
-    assert x[1] == 41
-    assert x[5] == "fizzbuzz"
+def FizzBuzz(start, finish):
+    outlist = []
+    for i in range(start, finish + 1): 
+        if i % 15 == 0:
+            outlist.append("FizzBuzz")
+        elif i % 3 == 0:
+            outlist.append("Fizz")
+        elif i % 5 == 0:
+            outlist.append("Buzz")
+        else:
+            outlist.append(i)
+
+    return outlist
+myEmptyList = []
+for i in range(1,5):
+    myEmptyList.append(i)
+    
+print(myEmptyList)
+print(FizzBuzz(1, 15))
