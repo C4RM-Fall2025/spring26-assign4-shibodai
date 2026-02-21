@@ -16,6 +16,8 @@ def getBondPrice(y, face, couponRate, m, ppy=1):
     return bondPrice
 
 getBondPrice(0.03,20000000,0.04,10)
+print (getBondPrice(0.03,20000000,0.04,10))
+
 
 
 def getBondDuration(y, face, couponRate, m, ppy=1):
@@ -37,6 +39,7 @@ def getBondDuration(y, face, couponRate, m, ppy=1):
     return bondDuration
 
 getBondDuration(0.03,20000000,0.04,10)
+print (getBondDuration(0.03,20000000,0.04,10))
 
 
 def getBondPrice_E(face, couponRate, m, yc):
@@ -54,6 +57,7 @@ def getBondPrice_E(face, couponRate, m, yc):
 
     return bondPrice
 getBondPrice_E(20000000,.04,5,[.010,.015,.020,.025,.030])
+print(getBondPrice_E(20000000,.04,5,[.010,.015,.020,.025,.030]))
 
 
 def getBondPrice_Z(face, couponRate, times, yc):
@@ -71,6 +75,7 @@ def getBondPrice_Z(face, couponRate, times, yc):
 
     return bondPrice
 getBondPrice_Z(2000000,.04,[1,1.5,3,4,7],[.010,.015,.020,.025,.030])
+print (getBondPrice_Z(2000000,.04,[1,1.5,3,4,7],[.010,.015,.020,.025,.030]))
 
     
 
