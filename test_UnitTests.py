@@ -15,8 +15,11 @@ def getBondPrice(y, face, couponRate, m, ppy=1):
     bondPrice += face / ((1 + r) ** n)
     return bondPrice
 
-getBondPrice(0.03,20000000,0.04,10)
-print (getBondPrice(0.03,20000000,0.04,10))
+
+print (getBondPrice(0.03,2000000,0.04,10))
+print (getBondPrice(0.03,2000000,0.04,10,2))
+
+
 
 
 
@@ -38,26 +41,25 @@ def getBondDuration(y, face, couponRate, m, ppy=1):
     bondDuration = weighted_sum / price
     return bondDuration
 
-getBondDuration(0.03,20000000,0.04,10)
+getBondDuration(0.03,2000000,0.04,10)
 print (getBondDuration(0.03,20000000,0.04,10))
 
 
 def getBondPrice_E(face, couponRate, m, yc):
     C = face * couponRate
     bondPrice = 0
-    discount_factor = 1
-
     for t, rate in enumerate(yc, start=1):
-        discount_factor *= (1 + rate)
+        discount_factor = (1 + rate) ** t 
+        
         cf = C
         if t == m:
-            cf = C + face
+            cf = C + face 
 
         bondPrice += cf / discount_factor
-
+        
     return bondPrice
-getBondPrice_E(20000000,.04,5,[.010,.015,.020,.025,.030])
-print(getBondPrice_E(20000000,.04,5,[.010,.015,.020,.025,.030]))
+
+print(getBondPrice_E(2000000,.04,5,[.010,.015,.020,.025,.030]))
 
 
 def getBondPrice_Z(face, couponRate, times, yc):
