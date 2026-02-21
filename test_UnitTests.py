@@ -1,10 +1,10 @@
-import WhoAmI_File
+
 def WhoAmI():
     return('sd3965')
 x=WhoAmI()
 print(x)
         
-import BondPrice_File
+
 def getBondPrice(y, face, couponRate, m, ppy=1):
     r = y / ppy              
     n = m * ppy              
@@ -17,7 +17,7 @@ def getBondPrice(y, face, couponRate, m, ppy=1):
 
 getBondPrice(0.03,20000000,0.04,10)
 
-import BondDuration_File
+
 def getBondDuration(y, face, couponRate, m, ppy=1):
     r = y / ppy
     n = m * ppy
@@ -38,7 +38,7 @@ def getBondDuration(y, face, couponRate, m, ppy=1):
 
 getBondDuration(0.03,20000000,0.04,10)
 
-import BondPrice_E_File
+
 def getBondPrice_E(face, couponRate, m, yc):
     C = face * couponRate
     bondPrice = 0
@@ -55,7 +55,7 @@ def getBondPrice_E(face, couponRate, m, yc):
     return bondPrice
 getBondPrice_E(20000000,.04,5,[.010,.015,.020,.025,.030])
 
-import BondPrice_Z_File
+
 def getBondPrice_Z(face, couponRate, times, yc):
     C = face * couponRate
     bondPrice = 0
@@ -73,7 +73,7 @@ def getBondPrice_Z(face, couponRate, times, yc):
 getBondPrice_Z(2000000,.04,[1,1.5,3,4,7],[.010,.015,.020,.025,.030])
 
     
-import FizzBuzz_File
+
 def FizzBuzz(start, finish):
     outlist = []
     for i in range(start, finish + 1): 
