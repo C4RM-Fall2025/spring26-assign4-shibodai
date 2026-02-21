@@ -87,9 +87,6 @@ def FizzBuzz(start, finish):
             outlist.append(i)
 
     return outlist
-myEmptyList = []
-for i in range(1,5):
-    myEmptyList.append(i)
-    
-print(myEmptyList)
+
+
 print(FizzBuzz(1, 15))
